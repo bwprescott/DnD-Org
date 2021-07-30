@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ExpertsMustHaveAtLeastOneProfession</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( Profession__c , &apos;&apos;)   &amp;&amp;  RecordTypeId =  &apos;0125e0000006hYr&apos;</errorConditionFormula>
+    <errorDisplayField>Profession__c</errorDisplayField>
+    <errorMessage>Experts must have a profession.</errorMessage>
+</ValidationRule>

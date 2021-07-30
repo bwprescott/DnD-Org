@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Versatility</fullName>
+    <active>true</active>
+    <errorConditionFormula>(ISPICKVAL( Damage__c , &quot;1d6/1d8&quot;) || ISPICKVAL( Damage__c , &quot;1d8/1d10&quot;)) &amp;&amp;  NOT( INCLUDES( Properties__c , &quot;Versatile&quot;) )</errorConditionFormula>
+    <errorDisplayField>Damage__c</errorDisplayField>
+    <errorMessage>These damage types only apply to versatile weapons.</errorMessage>
+</ValidationRule>

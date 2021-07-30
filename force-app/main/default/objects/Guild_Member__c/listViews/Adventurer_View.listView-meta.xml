@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Adventurer_View</fullName>
+    <columns>NAME</columns>
+    <columns>Class__c</columns>
+    <columns>Levels__c</columns>
+    <columns>Race__c</columns>
+    <columns>Guild_Hall__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Member_Type__c</field>
+        <operation>equals</operation>
+        <value>Adventurer</value>
+    </filters>
+    <label>Adventurer View</label>
+</ListView>

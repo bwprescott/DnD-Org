@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Request_Closed_Alert</fullName>
+        <description>Request Closed Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Assignment_Arbitrator</recipient>
+            <type>role</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/SupportCaseResponse</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Open_Request</fullName>
+        <field>Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Open Request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Request Open Too Long</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Request__c.Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Request__c.Sub_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Unaccepted_Request</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>Request__c.CreatedDate</offsetFromField>
+            <timeLength>30</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Send Assignment Arbitrator an email when a request is closed</fullName>
+        <actions>
+            <name>Request_Closed_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Request__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Approve_or_Deny_Request</fullName>
+        <assignedTo>gjura@gmail.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Please approve or deny this request&apos;s creation.</description>
+        <dueDateOffset>2</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Request__c.CreatedDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Approve or Deny Request</subject>
+    </tasks>
+    <tasks>
+        <fullName>Revise_Request</fullName>
+        <assignedTo>Assignment_Arbitrator</assignedTo>
+        <assignedToType>role</assignedToType>
+        <description>Please revise this request.</description>
+        <dueDateOffset>2</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Request__c.CreatedDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Revise Request</subject>
+    </tasks>
+    <tasks>
+        <fullName>Unaccepted_Request</fullName>
+        <assignedTo>gjura@gmail.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>This request has been pending for 30 days. Please examine it.</description>
+        <dueDateOffset>5</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Unaccepted Request</subject>
+    </tasks>
+</Workflow>

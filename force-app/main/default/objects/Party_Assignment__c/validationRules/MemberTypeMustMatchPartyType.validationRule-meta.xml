@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MemberTypeMustMatchPartyType</fullName>
+    <active>true</active>
+    <errorConditionFormula>(Guild_Member__r.RecordType.Id = &apos;0125e0000006hYm&apos; &amp;&amp; Party__r.RecordType.Id = &apos;0125e0000006kcl&apos;) || (Guild_Member__r.RecordType.Id = &apos;0125e0000006hYr&apos; &amp;&amp; Party__r.RecordType.Id = &apos;0125e0000006kcg&apos;)</errorConditionFormula>
+    <errorMessage>The Guild Member Type must match the Party Record Type.</errorMessage>
+</ValidationRule>

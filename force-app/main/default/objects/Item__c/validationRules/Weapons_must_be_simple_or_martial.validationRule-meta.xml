@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weapons_must_be_simple_or_martial</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(  Item_Type__c  , &quot;Weapon&quot;) &amp;&amp;  NOT( INCLUDES( Properties__c , &quot;Simple&quot;) || INCLUDES( Properties__c , &quot;Martial&quot;))</errorConditionFormula>
+    <errorDisplayField>Properties__c</errorDisplayField>
+    <errorMessage>Weapons must be either simple or martial.</errorMessage>
+</ValidationRule>
